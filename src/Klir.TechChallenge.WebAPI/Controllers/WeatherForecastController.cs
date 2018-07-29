@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,21 +20,26 @@ namespace Klir.TechChallenge.WebAPI.Controllers
         public ActionResult<IEnumerable<WeatherForecast>> GetAll()
         {
             var rng = new Random();
-            var number = Math.Round((decimal)rng.Next(0, 100), 0);
+            var number = rng.Next(0, 3);
 
             //Randomly return an Error
-            if (number % 2 == 0)
+            if (number == 0)
             {
+                return StatusCode(500);                
+            }
+            else
+            {
+                if (number == 1)
+                {
+                    Thread.Sleep(10000);
+                }
+
                 return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
                     TemperatureC = rng.Next(-20, 55),
                     Summary = Summaries[rng.Next(Summaries.Length)]
                 }));
-            }
-            else
-            {
-                return StatusCode(500);
             }
         }
 

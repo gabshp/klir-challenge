@@ -3,7 +3,13 @@
 <p>This component demonstrates fetching data from the server.</p>
 
 <p *ngIf="!forecasts && !error"><em>Loading...</em></p>
-<p *ngIf="error">{{error}}</p>
+
+<p *ngIf="error">
+  <strong *ngIf="error === 'TimeoutError'">The request is taking too long to respond</strong>
+  <strong *ngIf="error !== 'TimeoutError'">Some error ocurred</strong>
+  <br /><br />
+  <button class="btn btn-primary" (click)='this.getForecast()'>please, click here to try again</button>
+</p>
 
 <table class='table' *ngIf="forecasts">
   <thead>

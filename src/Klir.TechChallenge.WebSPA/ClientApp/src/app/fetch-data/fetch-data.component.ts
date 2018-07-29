@@ -30,7 +30,7 @@ export class FetchDataComponent implements OnInit {
           this.forecasts = response
         },
         error => {
-          this.error = error.message;
+          this.error = error.name;
         });
   }
 }

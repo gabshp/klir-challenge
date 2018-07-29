@@ -10,6 +10,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
+import { APIInterceptor } from './shared/services/http/http.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,12 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     ]),
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
