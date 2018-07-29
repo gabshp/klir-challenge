@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.WebSPA", "Klir.TechChallenge.WebSPA\Klir.TechChallenge.WebSPA.csproj", "{ABD1CEDF-0FF1-4EAF-8170-B9805181B49C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.WebSPA", "Klir.TechChallenge.WebSPA\Klir.TechChallenge.WebSPA.csproj", "{ABD1CEDF-0FF1-4EAF-8170-B9805181B49C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.WebAPI", "Klir.TechChallenge.WebAPI\Klir.TechChallenge.WebAPI.csproj", "{2BBEC367-9B1F-4DFE-A61D-4707D2743F04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.WebAPI", "Klir.TechChallenge.WebAPI\Klir.TechChallenge.WebAPI.csproj", "{2BBEC367-9B1F-4DFE-A61D-4707D2743F04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Domain", "Klir.TechChallenge.Domain\Klir.TechChallenge.Domain.csproj", "{11CADCB2-7F39-492A-942B-A44C7FE72D0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Infrastructure", "Klir.TechChallenge.Infrastructure\Klir.TechChallenge.Infrastructure.csproj", "{6F702D53-C3E7-44DB-8DC5-C02AB11F19B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{2BBEC367-9B1F-4DFE-A61D-4707D2743F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBEC367-9B1F-4DFE-A61D-4707D2743F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBEC367-9B1F-4DFE-A61D-4707D2743F04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CADCB2-7F39-492A-942B-A44C7FE72D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CADCB2-7F39-492A-942B-A44C7FE72D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CADCB2-7F39-492A-942B-A44C7FE72D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CADCB2-7F39-492A-942B-A44C7FE72D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F702D53-C3E7-44DB-8DC5-C02AB11F19B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F702D53-C3E7-44DB-8DC5-C02AB11F19B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F702D53-C3E7-44DB-8DC5-C02AB11F19B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F702D53-C3E7-44DB-8DC5-C02AB11F19B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

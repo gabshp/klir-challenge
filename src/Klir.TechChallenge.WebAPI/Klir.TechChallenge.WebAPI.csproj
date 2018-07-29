@@ -5,11 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DB\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Klir.TechChallenge.Domain\Klir.TechChallenge.Domain.csproj" />
+    <ProjectReference Include="..\Klir.TechChallenge.Infrastructure\Klir.TechChallenge.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

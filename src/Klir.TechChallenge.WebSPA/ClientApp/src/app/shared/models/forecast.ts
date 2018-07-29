@@ -1,5 +1,5 @@
 export class Forecast {
-  dateFormatted: string;
+  dateForecast: Date;
   temperatureC: number;
   temperatureF: number;
   summary: string;

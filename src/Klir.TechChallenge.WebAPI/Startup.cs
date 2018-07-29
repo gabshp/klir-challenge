@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Klir.TechChallenge.Domain.Interfaces;
+using Klir.TechChallenge.Infrastructure.Data;
+using Klir.TechChallenge.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System;
 
 namespace Klir.TechChallenge.WebAPI
 {
@@ -30,6 +29,12 @@ namespace Klir.TechChallenge.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ForecastContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowLocal",
@@ -37,7 +42,7 @@ namespace Klir.TechChallenge.WebAPI
                     {
                         builder.WithOrigins(Configuration.GetValue<string>("WebSPAUrl"));
                     });
-            });            
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -60,8 +65,8 @@ namespace Klir.TechChallenge.WebAPI
             }
 
             app.UseCors("AllowLocal");
-			
-            app.UseHttpsRedirection();
+
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
+using Klir.TechChallenge.Domain.Entities;
+using Klir.TechChallenge.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,20 +13,18 @@ namespace Klir.TechChallenge.WebAPI.Controllers
     [ApiController]
     public class WeatherForecastController : ControllerBase
     {
+        private readonly IWeatherForecastRepository _weatherForecastRepository;
         private readonly ILogger _logger;
-		
-        private static string[] Summaries = new[]
+
+        public WeatherForecastController(IWeatherForecastRepository weatherForecastRepository
+            , ILogger<WeatherForecastController> logger)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-		
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
+            _weatherForecastRepository = weatherForecastRepository;
             _logger = logger;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<WeatherForecast>> GetAll()
+        public ActionResult<IEnumerable<WeatherForecast>> Get()
         {
             var rng = new Random();
             var number = rng.Next(0, 3);
@@ -39,37 +37,19 @@ namespace Klir.TechChallenge.WebAPI.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
             else
-            {			
+            {
                 if (number == 1)
                 {
-					_logger.LogInformation("Add some delay to timeout");
-				
+                    _logger.LogInformation("Add some delay to timeout");
+
                     Thread.Sleep(10000);
                 }
 
-				_logger.LogInformation("Get Weather Forecasts");
-				
-                return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Summaries[rng.Next(Summaries.Length)]
-                }));
-            }
-        }
+                var forecasts = _weatherForecastRepository.GetAll();
 
-        public class WeatherForecast
-        {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
+                _logger.LogInformation("Get Weather Forecasts");
 
-            public int TemperatureF
-            {
-                get
-                {
-                    return 32 + (int)(TemperatureC / 0.5556);
-                }
+                return Ok(forecasts);
             }
         }
     }
