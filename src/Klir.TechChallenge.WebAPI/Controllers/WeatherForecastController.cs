@@ -16,15 +16,25 @@ namespace Klir.TechChallenge.WebAPI.Controllers
         };
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> GetAll()
+        public ActionResult<IEnumerable<WeatherForecast>> GetAll()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var number = Math.Round((decimal)rng.Next(0, 100), 0);
+
+            //Randomly return an Error
+            if (number % 2 == 0)
             {
-                DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            });
+                return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                {
+                    DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
+                    TemperatureC = rng.Next(-20, 55),
+                    Summary = Summaries[rng.Next(Summaries.Length)]
+                }));
+            }
+            else
+            {
+                return StatusCode(500);
+            }
         }
 
         public class WeatherForecast
