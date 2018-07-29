@@ -64,6 +64,20 @@ namespace Klir.TechChallenge.WebAPI
                 app.UseHsts();
             }
 
+            //Migrate and seed the database
+            try
+            {
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                    .CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<ForecastContext>().Database.Migrate();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to migrate or seed database");
+            }
+
             app.UseCors("AllowLocal");
 
             //app.UseHttpsRedirection();
