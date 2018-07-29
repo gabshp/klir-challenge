@@ -34,6 +34,8 @@ namespace Klir.TechChallenge.Infrastructure.Data
                     .HasColumnType("datetime2(0)")
                     .IsRequired();
             });
+
+            modelBuilder.Seed();
         }
     }
 }
