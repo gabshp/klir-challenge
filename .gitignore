@@ -231,3 +231,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+/src/Klir.TechChallenge.WebSPA/Properties/launchSettings.json
+/src/Klir.TechChallenge.WebAPI/Properties/launchSettings.json
